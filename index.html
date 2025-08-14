@@ -1,208 +1,174 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FedEx Express Delivery Company</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KC Exchange — Professional Digital Services</title>
+  <meta name="description" content="KC Exchange — Websites, tracking portals, branding, and compliant gift-card trading. Message us on WhatsApp to get started.">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to bottom, #f4f4f4, #eaeaea);
-      overflow-x: hidden;
+    :root{
+      --bg:#0a0b0f;
+      --panel:#0f1117;
+      --panel-2:#0d0f15;
+      --gold:#d4af37;
+      --gold-2:#b68c2d;
+      --text:#f1f1f1;
+      --muted:#a7a9b0;
+      --stroke:rgba(212,175,55,.18);
     }
-
-    header {
-      background-color: #4d148c;
-      color: white;
-      padding: 1em;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(900px 600px at 80% -10%, rgba(212,175,55,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-
-    header h1 span {
-      color: #ff6600;
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 0;border-bottom:1px solid var(--stroke)
     }
-
-    .hero {
-      background: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd') no-repeat center center/cover;
-      color: white;
-      text-align: center;
-      padding: 4em 1em;
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      display:grid;place-items:center;font-weight:900;color:#0a0b0f;
+      background:linear-gradient(135deg,var(--gold),var(--gold-2));
+      box-shadow:0 10px 22px rgba(212,175,55,.25), inset 0 1px 0 rgba(255,255,255,.35);
+      letter-spacing:.6px
     }
-
-    .hero h2 {
-      font-size: 2.5em;
+    .brand h1{margin:0;font-size:20px;font-weight:800}
+    .tag{font-size:12px;color:var(--muted)}
+    .hero{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;
+      padding:32px 0;
     }
-
-    .container {
-      padding: 2em;
-      max-width: 800px;
-      margin: auto;
+    .card{
+      background:linear-gradient(180deg, rgba(212,175,55,.06), rgba(212,175,55,.02));
+      border:1px solid var(--stroke);border-radius:22px;padding:26px
     }
-
-    .options {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 2em;
+    .headline{font-size:38px;line-height:1.1;margin:0 0 14px}
+    .headline .accent{color:var(--gold)}
+    .sub{color:var(--muted);font-size:16px;margin:0 0 22px}
+    .cta{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg,var(--gold),var(--gold-2));
+      color:#0a0b0f;padding:14px 18px;border-radius:14px;font-weight:800;
+      box-shadow:0 12px 24px rgba(212,175,55,.25);
+      transition:transform .15s ease, box-shadow .15s ease;
     }
-
-    .option {
-      text-align: center;
-      padding: 1em;
-      border-radius: 8px;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      width: 30%;
+    .cta:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(212,175,55,.32)}
+    .cta .dot{width:8px;height:8px;border-radius:50%;background:#0a0b0f}
+    .pill{
+      display:inline-block;border:1px dashed rgba(212,175,55,.35);color:var(--gold);
+      padding:6px 10px;border-radius:999px;font-size:12px;margin-bottom:14px;background-color:rgba(212,175,55,.06)
     }
-
-    .option.track {
-      background-color: #4d148c;
-      color: white;
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+    .feature{border-radius:16px;padding:18px;background:var(--panel-2);border:1px solid rgba(212,175,55,.12)}
+    .feature h3{margin:0 0 6px;font-size:16px;color:var(--gold)}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+    .aside{
+      background:
+        radial-gradient(600px 300px at 100% -20%, rgba(212,175,55,.16), transparent 60%),
+        var(--panel);
+      border:1px solid rgba(212,175,55,.14);border-radius:22px;padding:22px;height:100%
     }
-
-    .track-box {
-      display: flex;
-      gap: 1em;
-      justify-content: center;
-      margin-bottom: 2em;
-    }
-
-    .track-box input {
-      padding: 0.5em;
-      font-size: 1em;
-      width: 60%;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .track-box button {
-      background: #ff6600;
-      color: white;
-      padding: 0.5em 1em;
-      font-size: 1em;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 2em;
-      display: none;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 1em;
-      text-align: left;
-    }
-
-    th {
-      background-color: #4d148c;
-      color: white;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2em;
-      background-color: #4d148c;
-      color: white;
-      margin-top: 4em;
-    }
-
-    .package-image {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      margin-top: 1em;
-    }
+    .aside h2{margin:0 0 8px;font-size:18px;color:var(--gold)}
+    .list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+    .list li{padding:12px 12px;border-radius:12px;background: #0d0f15;border:1px solid rgba(212,175,55,.1)}
+    .list b{color:var(--text)}
+    .badge{font-size:11px;color:var(--muted)}
+    .footer{margin:32px 0 12px;color:#8c8f96;font-size:12px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .name{font-weight:800;color:var(--gold)}
+    .legal{font-size:11px;color:#8c8f96}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .chip{display:inline-block;font-size:12px;color:var(--muted);border:1px solid rgba(212,175,55,.22);border-radius:999px;padding:6px 10px}
+    @media (max-width:880px){.hero{grid-template-columns:1fr}.headline{font-size:32px}.features{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Fed<span>Ex</span></h1>
-    <div style="font-size: 1.5em;">👤</div>
-  </header>
+  <div class="wrap">
+    <header class="nav">
+      <div class="brand">
+        <div class="logo">KC</div>
+        <div>
+          <h1>KC Exchange</h1>
+          <div class="tag">Websites • Branding • Consulting</div>
+        </div>
+      </div>
+      <div>
+        <!-- WhatsApp button -->
+        <a class="cta" href="https://wa.me/2349059980746?text=Hi%20KC%20Exchange%2C%20I%27d%20like%20to%20get%20started." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+          <span class="dot"></span> Chat on WhatsApp
+        </a>
+      </div>
+    </header>
 
-  <section class="hero">
-    <h2>Connected to tomorrow.</h2>
-  </section>
+    <main class="hero">
+      <section class="card">
+        <span class="pill">Premium • Black &amp; Gold Design</span>
+        <h2 class="headline">Unique, mature <span class="accent">websites</span> &amp; elegant <span class="accent">branding</span>.</h2>
+        <p class="sub">We help founders and teams launch clean, conversion-focused experiences—built fast and done right. Every project ships with a refined black-and-gold aesthetic.</p>
+        <div class="grid-2" style="margin-bottom:18px">
+          <span class="chip">Responsive layouts</span>
+          <span class="chip">Fast delivery</span>
+          <span class="chip">SEO ready</span>
+          <span class="chip">Clear communication</span>
+        </div>
+        <a class="cta" href="https://wa.me/2349059980746?text=Hi%20KC%20Exchange%2C%20let%27s%20start%20a%20project." target="_blank" rel="noopener">
+          <span class="dot"></span> Start a Project
+        </a>
 
-  <img src="fedex-worker.jpg" style="width: 100%; height: auto; display: block;">
+        <div class="features">
+          <div class="feature">
+            <h3>Websites &amp; Dashboards</h3>
+            <p>Landing pages, full sites, and custom tools such as package-tracking interfaces and client portals.</p>
+          </div>
+          <div class="feature">
+            <h3>Branding &amp; Graphics</h3>
+            <p>Logos, social media kits, marketing materials, and sleek layouts to elevate your brand.</p>
+          </div>
+          <div class="feature">
+            <h3>Gift-Card Trading (Compliant)</h3>
+            <p>Guidance and facilitation for lawful, transparent gift-card exchanges. Clear terms and verification.</p>
+          </div>
+        </div>
+      </section>
 
-  <section class="container">
-    <div class="options">
-      <div class="option">FARES AND TRANSIT TIMES</div>
-      <div class="option track">TRACK</div>
-      <div class="option">SEND</div>
-    </div>
+      <aside class="aside">
+        <h2>What We Do</h2>
+        <ul class="list">
+          <li><b>Website builds</b> <span class="badge">e.g., contract workflow pages, package tracking UIs</span></li>
+          <li><b>Gift-card facilitation</b> <span class="badge">transparent &amp; compliant processes</span></li>
+          <li><b>Graphics &amp; brand assets</b> <span class="badge">logos, flyers, social banners, mockups</span></li>
+          <li><b>Advisory &amp; tweaks</b> <span class="badge">review, refine, and upgrade your idea</span></li>
+        </ul>
+        <div style="margin-top:16px">
+          <a class="cta" href="https://wa.me/2349059980746?text=Hello%20KC%20Exchange%2C%20I%20have%20a%20question." target="_blank" rel="noopener">
+            <span class="dot"></span> Message on WhatsApp
+          </a>
+        </div>
+      </aside>
+    </main>
 
-    <div class="track-box">
-      <input id="trackingId" type="text" placeholder="TRACKING ID" />
-      <button onclick="trackPackage()">TRACK →</button>
-    </div>
+    <section class="card">
+      <h2 class="headline" style="font-size:28px;margin-bottom:8px">About <span class="accent">KC Exchange</span></h2>
+      <p class="sub">
+        KC Exchange is your partner for polished digital delivery. We prioritize reliability, clear communication,
+        and outcomes that look as good as they perform.
+      </p>
+    </section>
 
-    <div id="resultArea"></div>
-  </section>
-
-  <footer class="footer">
-    <p>&copy; 2025 FedEx | All right reserved </p>
-  </footer>
-
-  <script>
-    const trackingData = {
-      "FEDEX-5491G": {
-        sender: { name: "Dr Jennifer", country: "Afghanistan", email: "jn@gmail.com", phone: "00746525472" },
-        receiver: { name: "Gustavo Daniel viera", country: "Argentina", email: "emty", direction: "Jacobo watt 5053 buenos aires", phone: "+54 9 11 3854-8729" },
-        arrival: "23st of July 2025",
-        image: "fedex-package.jpg"
-      },
-      "FEDEX-VINCENT23": {
-        sender: { name: "Vincent O.", country: "Nigeria", email: "vincent@mail.com", phone: "08012345678" },
-        receiver: { name: "Ahmed Yusuf", country: "UAE", email: "ahmed@mail.com", direction: "Dubai Marina", phone: "+971504562318" },
-        arrival: "25th of July 2025",
-        image: "vincent-package.jpg"
-      }
-    };
-
-    function trackPackage() {
-      const input = document.getElementById('trackingId').value.trim();
-      const resultArea = document.getElementById('resultArea');
-
-      if (trackingData[input]) {
-        const data = trackingData[input];
-        resultArea.innerHTML = `
-          <table>
-            <thead><tr><th colspan="2">SENDER'S INFORMATION</th></tr></thead>
-            <tbody>
-              <tr><td>Name</td><td>${data.sender.name}</td></tr>
-              <tr><td>Country</td><td>${data.sender.country}</td></tr>
-              <tr><td>Email</td><td>${data.sender.email}</td></tr>
-              <tr><td>Phone</td><td>${data.sender.phone}</td></tr>
-              <tr><th colspan="2">RECEIVER'S INFORMATION</th></tr>
-              <tr><td>Name</td><td>${data.receiver.name}</td></tr>
-              <tr><td>Country</td><td>${data.receiver.country}</td></tr>
-              <tr><td>Email</td><td>${data.receiver.email}</td></tr>
-              <tr><td>Direction</td><td>${data.receiver.direction}</td></tr>
-              <tr><td>Phone</td><td>${data.receiver.phone}</td></tr>
-              <tr><th colspan="2">PACKAGE INFORMATION</th></tr>
-              <tr><td>Date of Arrival</td><td>${data.arrival}</td></tr>
-              <tr><th colspan="2">PACKAGE IMAGE</th></tr>
-              <tr><td colspan="2" style="text-align: center;"><img src="${data.image}" class="package-image" /></td></tr>
-            </tbody>
-          </table>
-        `;
-      } else {
-        resultArea.innerHTML = "";
-        alert("Invalid Tracking ID. Please try again.");
-      }
-    }
-  </script>
+    <footer class="footer">
+      <div>© <span class="name">KC Exchange</span>. All rights reserved.</div>
+      <div class="legal">We do not create government IDs, receipts, or documents for identity/financial verification.</div>
+    </footer>
+  </div>
 </body>
-</html>
+  </html>
