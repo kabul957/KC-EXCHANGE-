@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FedEx Express Delivery Company</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #f4f4f4, #eaeaea);
+      overflow-x: hidden;
+    }
+
+    header {
+      background-color: #4d148c;
+      color: white;
+      padding: 1em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 span {
+      color: #ff6600;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 4em 1em;
+    }
+
+    .hero h2 {
+      font-size: 2.5em;
+    }
+
+    .container {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2em;
+    }
+
+    .option {
+      text-align: center;
+      padding: 1em;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 30%;
+    }
+
+    .option.track {
+      background-color: #4d148c;
+      color: white;
+    }
+
+    .track-box {
+      display: flex;
+      gap: 1em;
+      justify-content: center;
+      margin-bottom: 2em;
+    }
+
+    .track-box input {
+      padding: 0.5em;
+      font-size: 1em;
+      width: 60%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .track-box button {
+      background: #ff6600;
+      color: white;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2em;
+      display: none;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 1em;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4d148c;
+      color: white;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2em;
+      background-color: #4d148c;
+      color: white;
+      margin-top: 4em;
+    }
+
+    .package-image {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fed<span>Ex</span></h1>
+    <div style="font-size: 1.5em;">👤</div>
+  </header>
+
+  <section class="hero">
+    <h2>Connected to tomorrow.</h2>
+  </section>
+
+  <img src="fedex-worker.jpg" style="width: 100%; height: auto; display: block;">
+
+  <section class="container">
+    <div class="options">
+      <div class="option">FARES AND TRANSIT TIMES</div>
+      <div class="option track">TRACK</div>
+      <div class="option">SEND</div>
+    </div>
+
+    <div class="track-box">
+      <input id="trackingId" type="text" placeholder="TRACKING ID" />
+      <button onclick="trackPackage()">TRACK →</button>
+    </div>
+
+    <div id="resultArea"></div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 FedEx | All right reserved </p>
+  </footer>
+
+  <script>
+    const trackingData = {
+      "FEDEX-5491G": {
+        sender: { name: "Dr Jennifer", country: "Afghanistan", email: "jn@gmail.com", phone: "00746525472" },
+        receiver: { name: "Gustavo Daniel viera", country: "Argentina", email: "emty", direction: "Jacobo watt 5053 buenos aires", phone: "+54 9 11 3854-8729" },
+        arrival: "23st of July 2025",
+        image: "fedex-package.jpg"
+      },
+      "FEDEX-VINCENT23": {
+        sender: { name: "Vincent O.", country: "Nigeria", email: "vincent@mail.com", phone: "08012345678" },
+        receiver: { name: "Ahmed Yusuf", country: "UAE", email: "ahmed@mail.com", direction: "Dubai Marina", phone: "+971504562318" },
+        arrival: "25th of July 2025",
+        image: "vincent-package.jpg"
+      }
+    };
+
+    function trackPackage() {
+      const input = document.getElementById('trackingId').value.trim();
+      const resultArea = document.getElementById('resultArea');
+
+      if (trackingData[input]) {
+        const data = trackingData[input];
+        resultArea.innerHTML = `
+          <table>
+            <thead><tr><th colspan="2">SENDER'S INFORMATION</th></tr></thead>
+            <tbody>
+              <tr><td>Name</td><td>${data.sender.name}</td></tr>
+              <tr><td>Country</td><td>${data.sender.country}</td></tr>
+              <tr><td>Email</td><td>${data.sender.email}</td></tr>
+              <tr><td>Phone</td><td>${data.sender.phone}</td></tr>
+              <tr><th colspan="2">RECEIVER'S INFORMATION</th></tr>
+              <tr><td>Name</td><td>${data.receiver.name}</td></tr>
+              <tr><td>Country</td><td>${data.receiver.country}</td></tr>
+              <tr><td>Email</td><td>${data.receiver.email}</td></tr>
+              <tr><td>Direction</td><td>${data.receiver.direction}</td></tr>
+              <tr><td>Phone</td><td>${data.receiver.phone}</td></tr>
+              <tr><th colspan="2">PACKAGE INFORMATION</th></tr>
+              <tr><td>Date of Arrival</td><td>${data.arrival}</td></tr>
+              <tr><th colspan="2">PACKAGE IMAGE</th></tr>
+              <tr><td colspan="2" style="text-align: center;"><img src="${data.image}" class="package-image" /></td></tr>
+            </tbody>
+          </table>
+        `;
+      } else {
+        resultArea.innerHTML = "";
+        alert("Invalid Tracking ID. Please try again.");
+      }
+    }
+  </script>
+</body>
+</html>
